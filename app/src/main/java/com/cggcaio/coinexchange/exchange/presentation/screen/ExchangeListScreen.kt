@@ -74,7 +74,7 @@ fun ExchangeListScreen(
                 }
             }
 
-            ExchangeListStatusEnum.ERROR, ExchangeListStatusEnum.NONE -> {
+            ExchangeListStatusEnum.ERROR -> {
                 ErrorView {
                     exchangeViewModel.getExchanges()
                 }
@@ -105,6 +105,8 @@ fun ExchangeListScreen(
                     }
                 }
             }
+
+            ExchangeListStatusEnum.NONE -> {}
         }
     }
 }
