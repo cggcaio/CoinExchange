@@ -93,7 +93,7 @@ class CustomColorScheme(
         internal set
     var green200 by mutableStateOf(green200, structuralEqualityPolicy())
         internal set
-    var gray300 by mutableStateOf(green200, structuralEqualityPolicy())
+    var gray300 by mutableStateOf(gray300, structuralEqualityPolicy())
         internal set
 }
 

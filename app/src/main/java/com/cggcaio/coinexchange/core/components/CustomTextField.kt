@@ -5,6 +5,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -29,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cggcaio.coinexchange.core.utils.noRippleClickable
 import com.cggcaio.coinexchange.ui.theme.AppTheme.color
@@ -174,4 +176,69 @@ fun CustomTextField(
 
 enum class CustomTextFieldValidate {
     NOT_EMPTY,
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CustomTextFieldPreview() {
+    Column(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+    ) {
+        CustomTextField(
+            value = "",
+            onValueChange = {},
+            label = "Nome",
+            placeholder = "Digite seu nome",
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        CustomTextField(
+            value = "",
+            onValueChange = {},
+            label = "E-mail",
+            placeholder = "Digite seu e-mail",
+            supportText = "Exemplo: usuario@dominio.com",
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        CustomTextField(
+            value = "",
+            onValueChange = {},
+            label = "Senha",
+            placeholder = "Digite sua senha",
+            isPassword = true,
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        CustomTextField(
+            value = "000.000.000-00",
+            onValueChange = {},
+            label = "CPF",
+            placeholder = "Digite seu CPF",
+            isError = true,
+            errorMessage = "CPF inválido",
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        CustomTextField(
+            value = "",
+            onValueChange = {},
+            label = "Endereço",
+            placeholder = "Digite seu endereço",
+            validator = CustomTextFieldValidate.NOT_EMPTY,
+            errorMessage = "Este campo é obrigatório",
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        CustomTextField(
+            value = "",
+            onValueChange = {},
+            label = "Descrição",
+            placeholder = "Digite uma descrição",
+            singleLine = false,
+        )
+    }
 }

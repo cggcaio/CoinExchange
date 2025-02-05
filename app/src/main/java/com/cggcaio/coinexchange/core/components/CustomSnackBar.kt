@@ -1,8 +1,10 @@
 package com.cggcaio.coinexchange.core.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -19,9 +21,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cggcaio.coinexchange.ui.theme.AppTheme.color
 import com.cggcaio.coinexchange.ui.theme.AppTheme.typography
+import com.cggcaio.coinexchange.ui.theme.constants.gray600
 import kotlinx.coroutines.delay
 
 enum class SnackbarState {
@@ -53,26 +57,26 @@ fun CustomSnackbar(
         val icon =
             when (state) {
                 SnackbarState.SUCCESS -> {
-                    backgroundColor = color.green100
+                    backgroundColor = color.green200
                     contentColor = color.textWhite
                     Icons.Default.CheckCircle
                 }
 
                 SnackbarState.INFO -> {
-                    backgroundColor = color.gray300
+                    backgroundColor = gray600
                     contentColor = color.textWhite
                     Icons.Default.Info
                 }
 
                 SnackbarState.ERROR -> {
-                    backgroundColor = color.red100
+                    backgroundColor = color.red300
                     contentColor = color.textWhite
                     Icons.Default.Close
                 }
 
                 SnackbarState.ALERT -> {
                     backgroundColor = color.secondary
-                    contentColor = color.gray300
+                    contentColor = color.primary100
                     Icons.Default.Warning
                 }
             }
@@ -97,5 +101,44 @@ fun CustomSnackbar(
                 style = typography.body.copy(color = contentColor),
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CustomSnackbarPreview() {
+    Column(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+    ) {
+        CustomSnackbar(
+            message = "Operação realizada com sucesso!",
+            state = SnackbarState.SUCCESS,
+            show = true,
+            onDismiss = {},
+        )
+
+        CustomSnackbar(
+            message = "Este é um aviso informativo.",
+            state = SnackbarState.INFO,
+            show = true,
+            onDismiss = {},
+        )
+
+        CustomSnackbar(
+            message = "Ocorreu um erro inesperado.",
+            state = SnackbarState.ERROR,
+            show = true,
+            onDismiss = {},
+        )
+
+        CustomSnackbar(
+            message = "Atenção! Esta é uma mensagem de alerta.",
+            state = SnackbarState.ALERT,
+            show = true,
+            onDismiss = {},
+        )
     }
 }

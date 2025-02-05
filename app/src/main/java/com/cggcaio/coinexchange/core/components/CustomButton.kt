@@ -1,10 +1,17 @@
 package com.cggcaio.coinexchange.core.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -18,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cggcaio.coinexchange.core.utils.noRippleClickable
 import com.cggcaio.coinexchange.ui.theme.AppTheme.color
@@ -65,29 +73,37 @@ fun CustomButton(
                 }
                 return@Button
             }
+            val contentColor =
+                if (enabled) {
+                    when (style) {
+                        CustomButtonStyles.SECONDARY -> {
+                            gray800
+                        }
+
+                        CustomButtonStyles.PRIMARY -> {
+                            color.textWhite
+                        }
+
+                        else -> {
+                            style.contentColor
+                        }
+                    }
+                } else {
+                    gray600
+                }
             startIcon?.let { safeIcon ->
                 Icon(
                     imageVector = safeIcon,
                     modifier = Modifier.size(size = 20.dp),
-                    tint = style.contentColor,
+                    tint = contentColor,
                     contentDescription = null,
                 )
                 Spacer(modifier = Modifier.size(size = 12.dp))
             }
 
-            val textColor =
-                if (enabled) {
-                    if (style == CustomButtonStyles.SECONDARY) {
-                        gray800
-                    } else {
-                        style.contentColor
-                    }
-                } else {
-                    gray600
-                }
             Text(
                 text = text,
-                style = typography.body.copy(color = textColor),
+                style = typography.body.copy(color = contentColor),
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.SemiBold,
             )
@@ -96,7 +112,7 @@ fun CustomButton(
                 Icon(
                     imageVector = safeIcon,
                     modifier = Modifier.size(size = 20.dp),
-                    tint = style.contentColor,
+                    tint = contentColor,
                     contentDescription = null,
                 )
             }
@@ -149,4 +165,130 @@ enum class CustomButtonStyles {
                 OUTLINED -> color.textBody
                 DELETE -> color.red300
             }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CustomButtonPreview() {
+    Column(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        CustomButton(
+            text = "Primary Button",
+            onClick = {},
+            style = CustomButtonStyles.PRIMARY,
+        )
+
+        CustomButton(
+            text = "Primary with Icon",
+            onClick = {},
+            startIcon = Icons.Default.Check,
+            style = CustomButtonStyles.PRIMARY,
+        )
+
+        CustomButton(
+            text = "Primary Disabled",
+            onClick = {},
+            enabled = false,
+            style = CustomButtonStyles.PRIMARY,
+        )
+
+        CustomButton(
+            text = "Primary Loading",
+            onClick = {},
+            loading = true,
+            style = CustomButtonStyles.PRIMARY,
+        )
+
+        CustomButton(
+            text = "Secondary Button",
+            onClick = {},
+            style = CustomButtonStyles.SECONDARY,
+        )
+
+        CustomButton(
+            text = "Secondary with Icon",
+            onClick = {},
+            endIcon = Icons.Default.Close,
+            style = CustomButtonStyles.SECONDARY,
+        )
+
+        CustomButton(
+            text = "Secondary Disabled",
+            onClick = {},
+            enabled = false,
+            style = CustomButtonStyles.SECONDARY,
+        )
+
+        CustomButton(
+            text = "Secondary Loading",
+            onClick = {},
+            loading = true,
+            style = CustomButtonStyles.SECONDARY,
+        )
+
+        CustomButton(
+            text = "Ghost Button",
+            onClick = {},
+            style = CustomButtonStyles.GHOST,
+        )
+
+        CustomButton(
+            text = "Ghost with Icon",
+            onClick = {},
+            startIcon = Icons.Default.Check,
+            style = CustomButtonStyles.GHOST,
+        )
+
+        CustomButton(
+            text = "Ghost Disabled",
+            onClick = {},
+            enabled = false,
+            style = CustomButtonStyles.GHOST,
+        )
+
+        CustomButton(
+            text = "Outlined Button",
+            onClick = {},
+            style = CustomButtonStyles.OUTLINED,
+        )
+
+        CustomButton(
+            text = "Outlined with Icon",
+            onClick = {},
+            endIcon = Icons.Default.Close,
+            style = CustomButtonStyles.OUTLINED,
+        )
+
+        CustomButton(
+            text = "Outlined Disabled",
+            onClick = {},
+            enabled = false,
+            style = CustomButtonStyles.OUTLINED,
+        )
+
+        CustomButton(
+            text = "Delete Button",
+            onClick = {},
+            style = CustomButtonStyles.DELETE,
+        )
+
+        CustomButton(
+            text = "Delete with Icon",
+            onClick = {},
+            startIcon = Icons.Default.Close,
+            style = CustomButtonStyles.DELETE,
+        )
+
+        CustomButton(
+            text = "Delete Disabled",
+            onClick = {},
+            enabled = false,
+            style = CustomButtonStyles.DELETE,
+        )
+    }
 }
