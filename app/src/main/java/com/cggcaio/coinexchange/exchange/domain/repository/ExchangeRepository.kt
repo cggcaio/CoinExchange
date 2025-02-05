@@ -6,5 +6,5 @@ import com.cggcaio.coinexchange.exchange.domain.model.ExchangeDetails
 interface ExchangeRepository {
     suspend fun getExchanges(): List<Exchange>
 
-    suspend fun getExchangeCurrentRate(id: String): ExchangeDetails
+    suspend fun getExchangeDetails(id: String): ExchangeDetails
 }

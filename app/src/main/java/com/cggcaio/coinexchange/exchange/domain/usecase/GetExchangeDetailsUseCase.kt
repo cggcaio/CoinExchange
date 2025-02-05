@@ -18,6 +18,6 @@ class GetExchangeDetailsUseCase
 
         override fun doWork(params: Params): Flow<ExchangeDetails?> =
             flow {
-                emit(_repository.getExchangeCurrentRate(id = params.id))
+                emit(_repository.getExchangeDetails(id = params.id))
             }
     }

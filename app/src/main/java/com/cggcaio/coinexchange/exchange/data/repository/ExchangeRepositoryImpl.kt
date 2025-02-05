@@ -15,7 +15,7 @@ class ExchangeRepositoryImpl
     ) : ExchangeRepository {
         override suspend fun getExchanges(): List<Exchange> = ExchangeMapper.transformToList(source = _exchangeService.getAllExchanges())
 
-        override suspend fun getExchangeCurrentRate(id: String): ExchangeDetails =
+        override suspend fun getExchangeDetails(id: String): ExchangeDetails =
             ExchangeDetailsMapper.transformTo(
                 source = _exchangeService.getExchangeDetails(id = id).last(),
             )
