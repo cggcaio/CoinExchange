@@ -1,5 +1,6 @@
 package com.cggcaio.coinexchange.exchange.presentation.screen
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -20,6 +21,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -35,14 +37,15 @@ import com.cggcaio.coinexchange.core.widgets.EmptyListView
 import com.cggcaio.coinexchange.core.widgets.ErrorView
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
-import com.cggcaio.coinexchange.exchange.presentation.viewmodel.ExchangeListViewModel
+import com.cggcaio.coinexchange.exchange.presentation.viewmodel.BaseExchangeListViewModel
+import com.cggcaio.coinexchange.exchange.utils.Mocks.exchangeList
 import com.cggcaio.coinexchange.ui.theme.AppTheme.color
 import com.cggcaio.coinexchange.ui.theme.AppTheme.typography
 import com.cggcaio.coinexchange.ui.theme.CoinExchangeTheme
 
 @Composable
 fun ExchangeListScreen(
-    exchangeViewModel: ExchangeListViewModel = hiltViewModel(),
+    exchangeViewModel: BaseExchangeListViewModel = hiltViewModel(),
     goToDetailScreen: (String) -> Unit,
 ) {
     val exchangeName = remember { mutableStateOf("") }
@@ -154,41 +157,45 @@ private fun ShimmerEffect() {
             style = typography.header4.copy(color = Color.Transparent),
         )
         Spacer(modifier = Modifier.size(size = 8.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            modifier =
+                Modifier
+                    .background(
+                        brush = brush,
+                        shape = RoundedCornerShape(10.dp),
+                    ),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Icon(
                 modifier = Modifier.size(size = 18.dp),
                 imageVector = Icons.Default.AccountBalance,
-                tint = color.secondary,
+                tint = Color.Transparent,
                 contentDescription = null,
             )
             Spacer(modifier = Modifier.size(size = 8.dp))
             Text(
-                modifier =
-                    Modifier
-                        .background(
-                            brush = brush,
-                            shape = RoundedCornerShape(10.dp),
-                        ),
                 text = "exchange.id",
                 style = typography.bodySmall.copy(color = Color.Transparent),
             )
         }
         Spacer(modifier = Modifier.size(size = 4.dp))
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            modifier =
+                Modifier
+                    .background(
+                        brush = brush,
+                        shape = RoundedCornerShape(10.dp),
+                    ),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
             Icon(
                 modifier = Modifier.size(size = 18.dp),
                 imageVector = Icons.Default.AttachMoney,
-                tint = color.secondary,
+                tint = Color.Transparent,
                 contentDescription = null,
             )
             Spacer(modifier = Modifier.size(size = 8.dp))
             Text(
-                modifier =
-                    Modifier
-                        .background(
-                            brush = brush,
-                            shape = RoundedCornerShape(10.dp),
-                        ),
                 text = "exchange.volume1DayUsd",
                 style = typography.bodySmall.copy(color = Color.Transparent),
             )
@@ -198,12 +205,45 @@ private fun ShimmerEffect() {
     }
 }
 
-// todo caioba
 @Preview(showBackground = true)
 @Composable
 fun ExchangeListScreenPreview() {
     CoinExchangeTheme {
         ExchangeListScreen(
+            exchangeViewModel =
+            object : BaseExchangeListViewModel() {
+                override val listStatus: State<ExchangeListStatusEnum>
+                    get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
+                override val visibleExchanges: State<List<Exchange>?>
+                    get() = mutableStateOf(exchangeList)
+
+                override fun getExchanges() {}
+
+                override fun filterExchanges(query: String) {}
+
+            },
+            goToDetailScreen = {},
+        )
+    }
+}
+
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun ExchangeListScreenDarkPreview() {
+    CoinExchangeTheme {
+        ExchangeListScreen(
+            exchangeViewModel =
+            object : BaseExchangeListViewModel() {
+                override val listStatus: State<ExchangeListStatusEnum>
+                    get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
+                override val visibleExchanges: State<List<Exchange>?>
+                    get() = mutableStateOf(exchangeList)
+
+                override fun getExchanges() {}
+
+                override fun filterExchanges(query: String) {}
+
+            },
             goToDetailScreen = {},
         )
     }
