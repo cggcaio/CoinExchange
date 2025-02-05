@@ -38,6 +38,7 @@ import com.cggcaio.coinexchange.core.widgets.ErrorView
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
 import com.cggcaio.coinexchange.exchange.presentation.viewmodel.BaseExchangeListViewModel
+import com.cggcaio.coinexchange.exchange.presentation.viewmodel.ExchangeListViewModel
 import com.cggcaio.coinexchange.exchange.utils.Mocks.exchangeList
 import com.cggcaio.coinexchange.ui.theme.AppTheme.color
 import com.cggcaio.coinexchange.ui.theme.AppTheme.typography
@@ -45,7 +46,7 @@ import com.cggcaio.coinexchange.ui.theme.CoinExchangeTheme
 
 @Composable
 fun ExchangeListScreen(
-    exchangeViewModel: BaseExchangeListViewModel = hiltViewModel(),
+    exchangeViewModel: BaseExchangeListViewModel = hiltViewModel<ExchangeListViewModel>(),
     goToDetailScreen: (String) -> Unit,
 ) {
     val exchangeName = remember { mutableStateOf("") }
@@ -211,17 +212,16 @@ fun ExchangeListScreenPreview() {
     CoinExchangeTheme {
         ExchangeListScreen(
             exchangeViewModel =
-            object : BaseExchangeListViewModel() {
-                override val listStatus: State<ExchangeListStatusEnum>
-                    get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
-                override val visibleExchanges: State<List<Exchange>?>
-                    get() = mutableStateOf(exchangeList)
+                object : BaseExchangeListViewModel {
+                    override val listStatus: State<ExchangeListStatusEnum>
+                        get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
+                    override val visibleExchanges: State<List<Exchange>?>
+                        get() = mutableStateOf(exchangeList)
 
-                override fun getExchanges() {}
+                    override fun getExchanges() {}
 
-                override fun filterExchanges(query: String) {}
-
-            },
+                    override fun filterExchanges(query: String) {}
+                },
             goToDetailScreen = {},
         )
     }
@@ -233,17 +233,16 @@ fun ExchangeListScreenDarkPreview() {
     CoinExchangeTheme {
         ExchangeListScreen(
             exchangeViewModel =
-            object : BaseExchangeListViewModel() {
-                override val listStatus: State<ExchangeListStatusEnum>
-                    get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
-                override val visibleExchanges: State<List<Exchange>?>
-                    get() = mutableStateOf(exchangeList)
+                object : BaseExchangeListViewModel {
+                    override val listStatus: State<ExchangeListStatusEnum>
+                        get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
+                    override val visibleExchanges: State<List<Exchange>?>
+                        get() = mutableStateOf(exchangeList)
 
-                override fun getExchanges() {}
+                    override fun getExchanges() {}
 
-                override fun filterExchanges(query: String) {}
-
-            },
+                    override fun filterExchanges(query: String) {}
+                },
             goToDetailScreen = {},
         )
     }

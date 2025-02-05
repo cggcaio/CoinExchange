@@ -23,7 +23,8 @@ class ExchangeListViewModel
     @Inject
     constructor(
         private val _getExchangesUseCase: GetExchangesUseCase,
-    ) : BaseExchangeListViewModel() {
+    ) : ViewModel(),
+        BaseExchangeListViewModel {
         private val _exchanges = mutableStateOf<List<Exchange>?>(null)
 
         private val _visibleExchanges = mutableStateOf<List<Exchange>?>(null)
@@ -70,11 +71,11 @@ class ExchangeListViewModel
         }
     }
 
-abstract class BaseExchangeListViewModel : ViewModel() {
-    abstract val listStatus: State<ExchangeListStatusEnum>
-    abstract val visibleExchanges: State<List<Exchange>?>
+interface BaseExchangeListViewModel {
+    val listStatus: State<ExchangeListStatusEnum>
+    val visibleExchanges: State<List<Exchange>?>
 
-    abstract fun getExchanges()
+    fun getExchanges()
 
-    abstract fun filterExchanges(query: String)
+    fun filterExchanges(query: String)
 }
