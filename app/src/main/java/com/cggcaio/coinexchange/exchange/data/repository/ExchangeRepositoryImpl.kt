@@ -17,6 +17,6 @@ class ExchangeRepositoryImpl
 
         override suspend fun getExchangeCurrentRate(id: String): ExchangeDetails =
             ExchangeDetailsMapper.transformTo(
-                source = _exchangeService.getExchangeRates(id = id).first(),
+                source = _exchangeService.getExchangeDetails(id = id).last(),
             )
     }

@@ -10,7 +10,7 @@ interface ExchangeService {
     suspend fun getAllExchanges(): List<ExchangeResponse>
 
     @GET("/v1/exchanges/{exchange_id}")
-    suspend fun getExchangeRates(
+    suspend fun getExchangeDetails(
         @Path("exchange_id") id: String,
     ): List<ExchangeDetailsResponse>
 }
