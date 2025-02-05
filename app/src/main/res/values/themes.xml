@@ -2,4 +2,10 @@
 <resources>
 
     <style name="Theme.CoinExchange" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="SplashTheme" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="windowSplashScreenBackground">#37474F</item>
+        <item name="postSplashScreenTheme">@style/Theme.CoinExchange</item>
+    </style>
 </resources>
