@@ -27,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -72,16 +73,11 @@ fun ExchangeListScreen(
 
         when (exchangeViewModel.listStatus.value) {
             ExchangeListStatusEnum.LOADING -> {
-                repeat(10) {
-                    ShimmerEffect()
-                    Spacer(modifier = Modifier.size(size = 8.dp))
-                }
+                ShimmerEffect()
             }
 
             ExchangeListStatusEnum.ERROR -> {
-                ErrorView {
-                    exchangeViewModel.getExchanges()
-                }
+                ErrorView { exchangeViewModel.getExchanges() }
             }
 
             ExchangeListStatusEnum.EMPTY_LIST -> {
@@ -95,6 +91,7 @@ fun ExchangeListScreen(
 
             ExchangeListStatusEnum.SUCCESS -> {
                 LazyColumn(
+                    modifier = Modifier.testTag(tag = "ExchangeListView"),
                     verticalArrangement = Arrangement.spacedBy(space = 8.dp),
                 ) {
                     items(exchangeViewModel.visibleExchanges.value ?: emptyList()) { exchange ->
@@ -117,7 +114,7 @@ fun ExchangeListScreen(
 
 @Composable
 private fun ExchangeItem(exchange: Exchange) {
-    Text(text = exchange.name, style = typography.header4)
+    Text(modifier = Modifier.testTag(tag = "ExchangeNameText"), text = exchange.name, style = typography.header4)
     Spacer(modifier = Modifier.size(size = 8.dp))
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
@@ -146,7 +143,9 @@ private fun ExchangeItem(exchange: Exchange) {
 
 @Composable
 private fun ShimmerEffect() {
-    CustomShimmer { brush ->
+    CustomShimmer(
+        repeats = 10,
+    ) { brush ->
         Text(
             modifier =
                 Modifier
@@ -203,6 +202,7 @@ private fun ShimmerEffect() {
         }
         Spacer(modifier = Modifier.size(size = 4.dp))
         HorizontalDivider(thickness = 1.dp, color = color.primary200)
+        Spacer(modifier = Modifier.size(size = 8.dp))
     }
 }
 
