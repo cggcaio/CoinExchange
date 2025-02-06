@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import com.cggcaio.coinexchange.ui.theme.AppTheme.color
 
 private const val DEFAULT_REPETITIONS = 1
@@ -52,7 +53,7 @@ fun CustomShimmer(
             end = Offset(x = translateAnim.value, y = translateAnim.value),
         )
 
-    Column(modifier = modifier) {
+    Column(modifier = modifier.testTag("CustomShimmer")) {
         repeat(times = repeats) {
             shimmerItem(brush)
         }

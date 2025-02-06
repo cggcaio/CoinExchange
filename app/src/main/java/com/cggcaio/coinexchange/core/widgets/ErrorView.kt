@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.cggcaio.coinexchange.core.components.CustomButton
@@ -23,7 +24,7 @@ import com.cggcaio.coinexchange.ui.theme.AppTheme.typography
 
 @Composable
 fun ErrorView(retry: () -> Unit) {
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize().testTag(tag = "ErrorView")) {
         Column(
             modifier =
                 Modifier
