@@ -1,6 +1,7 @@
 package com.cggcaio.coinexchange.network
 
 import com.cggcaio.coinexchange.BuildConfig
+import com.cggcaio.coinexchange.network.error.ErrorsCallAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -34,6 +35,7 @@ class ApiClientImpl : ApiClient {
                 .Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(MoshiConverterFactory.create())
+                .addCallAdapterFactory(ErrorsCallAdapterFactory())
                 .client(createClient())
                 .build()
     }
