@@ -7,6 +7,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FilterListOff
+import androidx.compose.material.icons.filled.SearchOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cggcaio.coinexchange.ui.theme.AppTheme.color
 import com.cggcaio.coinexchange.ui.theme.AppTheme.typography
@@ -57,4 +61,15 @@ fun EmptyListView(
             textAlign = TextAlign.Center,
         )
     }
+}
+
+@Preview
+@Composable
+fun EmptyListPreview() {
+    EmptyListView(
+        title = "Nenhum resultado encontrado para sua busca",
+        body = "Verifique se você digitou o nome corretamente",
+        icon = Icons.Default.SearchOff,
+        iconColor = color.secondary,
+    )
 }
