@@ -16,12 +16,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.FilterListOff
+import androidx.compose.material.icons.filled.SearchOff
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.cggcaio.coinexchange.core.components.CustomShimmer
@@ -38,9 +39,9 @@ import com.cggcaio.coinexchange.core.widgets.EmptyListView
 import com.cggcaio.coinexchange.core.widgets.ErrorView
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
+import com.cggcaio.coinexchange.exchange.presentation.preview.ExchangeListViewModelPreview
 import com.cggcaio.coinexchange.exchange.presentation.viewmodel.BaseExchangeListViewModel
 import com.cggcaio.coinexchange.exchange.presentation.viewmodel.ExchangeListViewModel
-import com.cggcaio.coinexchange.exchange.utils.Mocks.exchangeList
 import com.cggcaio.coinexchange.ui.theme.AppTheme.color
 import com.cggcaio.coinexchange.ui.theme.AppTheme.typography
 import com.cggcaio.coinexchange.ui.theme.CoinExchangeTheme
@@ -84,7 +85,7 @@ fun ExchangeListScreen(
                 EmptyListView(
                     title = "Nenhum resultado encontrado para sua busca",
                     body = "Verifique se você digitou o nome corretamente",
-                    icon = Icons.Default.FilterListOff,
+                    icon = Icons.Default.SearchOff,
                     iconColor = color.secondary,
                 )
             }
@@ -208,20 +209,12 @@ private fun ShimmerEffect() {
 
 @Preview(showBackground = true)
 @Composable
-fun ExchangeListScreenPreview() {
+fun ExchangeListScreenPreview(
+    @PreviewParameter(ExchangeListViewModelPreview::class) exchangeViewModel: BaseExchangeListViewModel,
+) {
     CoinExchangeTheme {
         ExchangeListScreen(
-            exchangeViewModel =
-                object : BaseExchangeListViewModel {
-                    override val listStatus: State<ExchangeListStatusEnum>
-                        get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
-                    override val visibleExchanges: State<List<Exchange>?>
-                        get() = mutableStateOf(exchangeList)
-
-                    override fun getExchanges() {}
-
-                    override fun filterExchanges(query: String) {}
-                },
+            exchangeViewModel = exchangeViewModel,
             goToDetailScreen = {},
         )
     }
@@ -229,20 +222,12 @@ fun ExchangeListScreenPreview() {
 
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ExchangeListScreenDarkPreview() {
+fun ExchangeListScreenDarkPreview(
+    @PreviewParameter(ExchangeListViewModelPreview::class) exchangeViewModel: BaseExchangeListViewModel,
+) {
     CoinExchangeTheme {
         ExchangeListScreen(
-            exchangeViewModel =
-                object : BaseExchangeListViewModel {
-                    override val listStatus: State<ExchangeListStatusEnum>
-                        get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
-                    override val visibleExchanges: State<List<Exchange>?>
-                        get() = mutableStateOf(exchangeList)
-
-                    override fun getExchanges() {}
-
-                    override fun filterExchanges(query: String) {}
-                },
+            exchangeViewModel = exchangeViewModel,
             goToDetailScreen = {},
         )
     }
