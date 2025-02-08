@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.cggcaio.coinexchange.core.utils.noRippleClickable
@@ -36,6 +37,7 @@ fun CustomToolbar(
     ) {
         startIcon?.let { safeIcon ->
             CustomIcon(
+                modifier = Modifier.testTag(tag = "ToolbarBackPress"),
                 icon = startIcon,
                 onClick = onClickStartIcon,
             )
@@ -55,12 +57,13 @@ fun CustomToolbar(
 
 @Composable
 private fun CustomIcon(
+    modifier: Modifier,
     icon: ImageVector,
     onClick: (() -> Unit)?,
 ) {
     Box(
         modifier =
-            Modifier
+            modifier
                 .noRippleClickable { onClick?.invoke() }
                 .size(size = 32.dp)
                 .background(
