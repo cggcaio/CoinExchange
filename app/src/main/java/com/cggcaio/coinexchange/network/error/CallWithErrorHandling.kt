@@ -3,15 +3,15 @@ package com.cggcaio.coinexchange.network.error
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.BAD_REQUEST
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.FORBIDDEN
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.GENERIC_ERROR
+import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.NOT_FOUND
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.NO_DATA
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.TOO_MANY_REQUESTS
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.UNAUTHORIZED
-import com.cggcaio.coinexchange.network.error.model.CustomApiException
+import com.cggcaio.coinexchange.network.error.model.CustomNetworkException
 import com.cggcaio.coinexchange.network.error.model.HttpError
 import com.squareup.moshi.Moshi
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.HttpException
 import retrofit2.Response
 
 class CallWithErrorHandling(
@@ -36,7 +36,7 @@ class CallWithErrorHandling(
                                 if (error != null) {
                                     callback.onFailure(
                                         call,
-                                        CustomApiException(
+                                        CustomNetworkException(
                                             code = response.code(),
                                             message = error.toString(),
                                             friendlyMessage = getFriendlyMessage(response.code()),
@@ -45,11 +45,22 @@ class CallWithErrorHandling(
                                 } else {
                                     callback.onFailure(
                                         call,
-                                        HttpException(response),
+                                        CustomNetworkException(
+                                            code = response.code(),
+                                            message = response.message(),
+                                            friendlyMessage = getFriendlyMessage(response.code()),
+                                        ),
                                     )
                                 }
                             } else {
-                                callback.onFailure(call, HttpException(response))
+                                callback.onFailure(
+                                    call,
+                                    CustomNetworkException(
+                                        code = response.code(),
+                                        message = response.message(),
+                                        friendlyMessage = getFriendlyMessage(response.code()),
+                                    ),
+                                )
                             }
                         } catch (exception: Exception) {
                             exception.cause
@@ -74,6 +85,7 @@ class CallWithErrorHandling(
             400 -> BAD_REQUEST
             401 -> UNAUTHORIZED
             403 -> FORBIDDEN
+            404 -> NOT_FOUND
             429 -> TOO_MANY_REQUESTS
             550 -> NO_DATA
             else -> GENERIC_ERROR

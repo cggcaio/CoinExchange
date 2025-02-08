@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.AttachMoney
-import androidx.compose.material.icons.filled.FilterListOff
 import androidx.compose.material.icons.filled.SearchOff
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -78,7 +77,10 @@ fun ExchangeListScreen(
             }
 
             ExchangeListStatusEnum.ERROR -> {
-                ErrorView { exchangeViewModel.getExchanges() }
+                ErrorView(
+                    message = exchangeViewModel.error.value,
+                    retry = { exchangeViewModel.getExchanges() },
+                )
             }
 
             ExchangeListStatusEnum.EMPTY_LIST -> {

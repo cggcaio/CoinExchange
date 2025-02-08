@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Error
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +24,10 @@ import com.cggcaio.coinexchange.ui.theme.AppTheme.color
 import com.cggcaio.coinexchange.ui.theme.AppTheme.typography
 
 @Composable
-fun ErrorView(retry: () -> Unit) {
+fun ErrorView(
+    message: String?,
+    retry: () -> Unit,
+) {
     Column(modifier = Modifier.fillMaxSize().testTag(tag = "ErrorView")) {
         Column(
             modifier =
@@ -43,7 +46,7 @@ fun ErrorView(retry: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Icon(
-                    imageVector = Icons.Filled.Close,
+                    imageVector = Icons.Filled.Error,
                     contentDescription = "Error Icon",
                     tint = color.red300,
                     modifier = Modifier.size(size = 48.dp),
@@ -51,15 +54,13 @@ fun ErrorView(retry: () -> Unit) {
                 Spacer(modifier = Modifier.size(size = 8.dp))
 
                 Text(
-                    text = "Algo deu errado",
+                    text = "Ops...",
                     style = typography.header3,
                     textAlign = TextAlign.Center,
                 )
                 Spacer(modifier = Modifier.size(size = 8.dp))
                 Text(
-                    text =
-                        "Estamos enfrentando dificuldades.\n" +
-                            "Por favor, tente novamente mais tarde.",
+                    text = message ?: "Estamos enfrentando dificuldades.\nPor favor, tente novamente mais tarde.",
                     style = typography.body,
                     textAlign = TextAlign.Center,
                 )
@@ -79,5 +80,5 @@ fun ErrorView(retry: () -> Unit) {
 @Preview
 @Composable
 fun ErrorViewPreview() {
-    ErrorView { }
+    ErrorView(message = null, retry = {})
 }

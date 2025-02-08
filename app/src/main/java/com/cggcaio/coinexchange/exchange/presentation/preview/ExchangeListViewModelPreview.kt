@@ -40,40 +40,36 @@ class ExchangeListViewModelPreview : PreviewParameterProvider<BaseExchangeListVi
     override val values: Sequence<BaseExchangeListViewModel> =
         sequenceOf(
             object : BaseExchangeListViewModel {
-                override val listStatus: State<ExchangeListStatusEnum>
-                    get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
-                override val visibleExchanges: State<List<Exchange>?>
-                    get() = mutableStateOf(_exchangeList)
+                override val listStatus: State<ExchangeListStatusEnum> get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
+                override val visibleExchanges: State<List<Exchange>?> get() = mutableStateOf(_exchangeList)
+                override val error: State<String?> get() = mutableStateOf(null)
 
                 override fun getExchanges() {}
 
                 override fun filterExchanges(query: String) {}
             },
             object : BaseExchangeListViewModel {
-                override val listStatus: State<ExchangeListStatusEnum>
-                    get() = mutableStateOf(ExchangeListStatusEnum.EMPTY_LIST)
-                override val visibleExchanges: State<List<Exchange>?>
-                    get() = mutableStateOf(emptyList())
+                override val listStatus: State<ExchangeListStatusEnum> get() = mutableStateOf(ExchangeListStatusEnum.EMPTY_LIST)
+                override val visibleExchanges: State<List<Exchange>?> get() = mutableStateOf(emptyList())
+                override val error: State<String?> get() = mutableStateOf(null)
 
                 override fun getExchanges() {}
 
                 override fun filterExchanges(query: String) {}
             },
             object : BaseExchangeListViewModel {
-                override val listStatus: State<ExchangeListStatusEnum>
-                    get() = mutableStateOf(ExchangeListStatusEnum.LOADING)
-                override val visibleExchanges: State<List<Exchange>?>
-                    get() = mutableStateOf(emptyList())
+                override val listStatus: State<ExchangeListStatusEnum> get() = mutableStateOf(ExchangeListStatusEnum.LOADING)
+                override val visibleExchanges: State<List<Exchange>?> get() = mutableStateOf(emptyList())
+                override val error: State<String?> get() = mutableStateOf(null)
 
                 override fun getExchanges() {}
 
                 override fun filterExchanges(query: String) {}
             },
             object : BaseExchangeListViewModel {
-                override val listStatus: State<ExchangeListStatusEnum>
-                    get() = mutableStateOf(ExchangeListStatusEnum.ERROR)
-                override val visibleExchanges: State<List<Exchange>?>
-                    get() = mutableStateOf(emptyList())
+                override val listStatus: State<ExchangeListStatusEnum> get() = mutableStateOf(ExchangeListStatusEnum.ERROR)
+                override val visibleExchanges: State<List<Exchange>?> get() = mutableStateOf(emptyList())
+                override val error: State<String?> get() = mutableStateOf(null)
 
                 override fun getExchanges() {}
 

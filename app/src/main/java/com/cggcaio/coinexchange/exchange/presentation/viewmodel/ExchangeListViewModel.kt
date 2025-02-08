@@ -12,6 +12,7 @@ import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum.LOADIN
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum.SUCCESS
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
 import com.cggcaio.coinexchange.exchange.domain.usecase.GetExchangesUseCase
+import com.cggcaio.coinexchange.network.error.model.CustomNetworkException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
@@ -33,6 +34,9 @@ class ExchangeListViewModel
         private val _listStatus = mutableStateOf(ExchangeListStatusEnum.NONE)
         override val listStatus: State<ExchangeListStatusEnum> get() = _listStatus
 
+        private val _error = mutableStateOf<String?>(null)
+        override val error: State<String?> get() = _error
+
         override fun getExchanges() {
             _listStatus.value = LOADING
             _getExchangesUseCase
@@ -46,6 +50,9 @@ class ExchangeListViewModel
                         _listStatus.value = SUCCESS
                     }
                 }.catch { exc ->
+                    if (exc is CustomNetworkException) {
+                        _error.value = exc.friendlyMessage
+                    }
                     _listStatus.value = ERROR
                 }.launchIn(viewModelScope)
         }
@@ -74,6 +81,7 @@ class ExchangeListViewModel
 interface BaseExchangeListViewModel {
     val listStatus: State<ExchangeListStatusEnum>
     val visibleExchanges: State<List<Exchange>?>
+    val error: State<String?>
 
     fun getExchanges()
 
