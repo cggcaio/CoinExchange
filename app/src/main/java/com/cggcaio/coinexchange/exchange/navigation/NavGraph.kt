@@ -5,21 +5,21 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
-import com.cggcaio.coinexchange.exchange.presentation.screen.ExchangeCurrentRateScreen
+import com.cggcaio.coinexchange.exchange.presentation.screen.ExchangeDetailsScreen
 import com.cggcaio.coinexchange.exchange.presentation.screen.ExchangeListScreen
 
 fun NavGraphBuilder.exchangeGraph(navController: NavController) {
-    navigation<ExchangeGraph>(startDestination = ExchangeList) {
-        composable<ExchangeList> {
+    navigation<ExchangeGraph>(startDestination = ExchangeListRoute) {
+        composable<ExchangeListRoute> {
             ExchangeListScreen(
                 goToDetailScreen = { id ->
-                    navController.navigate(route = ExchangeCurrentRate(id = id))
+                    navController.navigate(route = ExchangeDetailsRoute(id = id))
                 },
             )
         }
-        composable<ExchangeCurrentRate> { backStackEntry ->
-            val exchange: ExchangeCurrentRate = backStackEntry.toRoute()
-            ExchangeCurrentRateScreen(
+        composable<ExchangeDetailsRoute> { backStackEntry ->
+            val exchange: ExchangeDetailsRoute = backStackEntry.toRoute()
+            ExchangeDetailsScreen(
                 exchangeId = exchange.id,
                 goToBack = { navController.popBackStack() },
             )

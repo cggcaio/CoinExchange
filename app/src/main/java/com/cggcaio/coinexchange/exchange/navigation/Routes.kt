@@ -6,9 +6,9 @@ import kotlinx.serialization.Serializable
 object ExchangeGraph
 
 @Serializable
-object ExchangeList
+object ExchangeListRoute
 
 @Serializable
-data class ExchangeCurrentRate(
+data class ExchangeDetailsRoute(
     val id: String,
 )
