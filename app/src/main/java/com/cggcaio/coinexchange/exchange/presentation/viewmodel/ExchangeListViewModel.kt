@@ -61,6 +61,7 @@ class ExchangeListViewModel
             when (query) {
                 "" -> {
                     _visibleExchanges.value = _exchanges.value
+                    _listStatus.value = SUCCESS
                 }
 
                 else -> {
