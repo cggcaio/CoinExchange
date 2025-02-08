@@ -9,4 +9,5 @@ object ErrorMessages {
     const val NO_DATA = "O item solicitado não está disponível no momento. Tente novamente mais tarde."
     const val GENERIC_ERROR = "Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde."
     const val NOT_FOUND = "O recurso solicitado não foi encontrado. Tente novamente mais tarde."
+    const val NO_INTERNET = "Sem conexão com a internet. Verifique sua conexão e tente novamente."
 }

@@ -5,6 +5,7 @@ import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.FORBIDDEN
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.GENERIC_ERROR
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.NOT_FOUND
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.NO_DATA
+import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.NO_INTERNET
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.TOO_MANY_REQUESTS
 import com.cggcaio.coinexchange.network.error.constants.ErrorMessages.UNAUTHORIZED
 import com.cggcaio.coinexchange.network.error.model.CustomNetworkException
@@ -13,6 +14,8 @@ import com.squareup.moshi.Moshi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 class CallWithErrorHandling(
     private val _delegate: Call<Any>,
@@ -74,7 +77,19 @@ class CallWithErrorHandling(
                     call: Call<Any>,
                     t: Throwable,
                 ) {
-                    callback.onFailure(call, t)
+                    val customException =
+                        when (t) {
+                            is UnknownHostException, is SocketTimeoutException -> {
+                                CustomNetworkException(
+                                    code = 0,
+                                    message = "No internet connection",
+                                    friendlyMessage = getFriendlyMessage(code = 0),
+                                )
+                            }
+                            else -> t
+                        }
+
+                    callback.onFailure(call, customException)
                 }
             },
         )
@@ -88,6 +103,7 @@ class CallWithErrorHandling(
             404 -> NOT_FOUND
             429 -> TOO_MANY_REQUESTS
             550 -> NO_DATA
+            0 -> NO_INTERNET
             else -> GENERIC_ERROR
         }
 

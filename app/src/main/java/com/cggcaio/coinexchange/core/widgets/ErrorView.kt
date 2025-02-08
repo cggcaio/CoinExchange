@@ -54,7 +54,7 @@ fun ErrorView(
                 Spacer(modifier = Modifier.size(size = 8.dp))
 
                 Text(
-                    text = "Ops...",
+                    text = "Ops",
                     style = typography.header3,
                     textAlign = TextAlign.Center,
                 )
