@@ -1,6 +1,6 @@
 package com.cggcaio.coinexchange.exchange.domain.usecase
 
-import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails
+import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails_1
 import com.cggcaio.coinexchange.exchange.domain.repository.ExchangeRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -19,13 +19,13 @@ class GetExchangeDetailsRouteUseCaseTest {
 
     @Test
     fun `test doWork should return exchange details when repository returns data`() {
-        coEvery { _repository.getExchangeDetails(id = any()) } returns exchangeDetails
+        coEvery { _repository.getExchangeDetails(id = any()) } returns exchangeDetails_1
 
         runTest {
             _getExchangeDetailsUseCase
                 .produce(params = GetExchangeDetailsUseCase.Params(id = "id"))
                 .map { details ->
-                    assertEquals(exchangeDetails, details)
+                    assertEquals(exchangeDetails_1, details)
                 }.catch {
                     fail()
                 }.launchIn(this)

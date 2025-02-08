@@ -1,6 +1,6 @@
 package com.cggcaio.coinexchange.exchange.data.repository
 
-import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails
+import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails_1
 import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails_api
 import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeList
 import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeList_response
@@ -48,7 +48,7 @@ class ExchangeRepositoryImplTest {
 
             val result = _exchangeRepository.getExchangeDetails(id = "BINANCE")
 
-            assertEquals(exchangeDetails, result)
+            assertEquals(exchangeDetails_1, result)
         }
 
     @Test

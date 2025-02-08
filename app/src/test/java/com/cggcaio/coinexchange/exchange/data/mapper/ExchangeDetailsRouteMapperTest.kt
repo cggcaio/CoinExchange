@@ -1,6 +1,6 @@
 package com.cggcaio.coinexchange.exchange.data.mapper
 
-import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails
+import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails_1
 import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails_api
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
@@ -10,7 +10,7 @@ class ExchangeDetailsRouteMapperTest {
     fun `test transformTo should map ExchangeDetailsResponse to ExchangeDetails correctly`() {
         val exchangeDetailsResponse = exchangeDetails_api
         val result = ExchangeDetailsMapper.transformTo(exchangeDetailsResponse)
-        assertEquals(exchangeDetails, result)
+        assertEquals(exchangeDetails_1, result)
     }
 
     @Test
@@ -27,7 +27,7 @@ class ExchangeDetailsRouteMapperTest {
 
         val result = ExchangeDetailsMapper.transformTo(exchangeDetailsResponse)
         assertEquals(
-            exchangeDetails.copy(
+            exchangeDetails_1.copy(
                 dataQuoteStart = null,
                 dataQuoteEnd = null,
                 dataOrderStart = null,
@@ -49,7 +49,7 @@ class ExchangeDetailsRouteMapperTest {
             )
         val result = ExchangeDetailsMapper.transformTo(exchangeDetailsResponse)
         assertEquals(
-            exchangeDetails.copy(
+            exchangeDetails_1.copy(
                 volume1HrsUsd = null,
                 volume1DayUsd = null,
                 volume1MthUsd = null,

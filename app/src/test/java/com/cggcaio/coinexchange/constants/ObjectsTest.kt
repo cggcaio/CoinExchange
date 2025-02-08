@@ -10,7 +10,7 @@ object ObjectsTest {
         ExchangeResponse(
             id = "BINANCE",
             name = "Binance",
-            volume1DayUsd = 112738443.25,
+            volume1DayUsd = 111738443.25,
         )
 
     val exchange_2_api =
@@ -26,7 +26,7 @@ object ObjectsTest {
         Exchange(
             id = "BINANCE",
             name = "Binance",
-            volume1DayUsd = "$112,738,443.25",
+            volume1DayUsd = "$111,738,443.25",
         )
 
     val exchange_2 =
@@ -46,15 +46,15 @@ object ObjectsTest {
             dataQuoteStart = "2017-03-15T00:00:00.0000000Z",
             dataQuoteEnd = "2025-01-29T00:00:00.0000000Z",
             dataOrderStart = "2017-03-14T00:00:00.0000000Z",
-            dataOrderEnd = "2025-01-29T00:00:00.0000000Z",
+            dataOrderEnd = "2025-01-30T00:00:00.0000000Z",
             dataTradeStart = "2017-03-07T00:00:00.0000000Z",
-            dataTradeEnd = "2025-01-29T00:00:00.0000000Z",
-            volume1DayUsd = 112738443.25,
+            dataTradeEnd = "2025-01-31T00:00:00.0000000Z",
+            volume1DayUsd = 111738443.25,
             volume1HrsUsd = 112738443.25,
-            volume1MthUsd = 112738443.25,
+            volume1MthUsd = 113738443.25,
         )
 
-    val exchangeDetails =
+    val exchangeDetails_1 =
         ExchangeDetails(
             exchangeId = "BINANCE",
             website = "https://www.binance.com/",
@@ -62,11 +62,11 @@ object ObjectsTest {
             dataQuoteStart = "15/03/2017",
             dataQuoteEnd = "29/01/2025",
             dataOrderStart = "14/03/2017",
-            dataOrderEnd = "29/01/2025",
+            dataOrderEnd = "30/01/2025",
             dataTradeStart = "07/03/2017",
-            dataTradeEnd = "29/01/2025",
-            volume1DayUsd = "$112,738,443.25",
+            dataTradeEnd = "31/01/2025",
+            volume1DayUsd = "$111,738,443.25",
             volume1HrsUsd = "$112,738,443.25",
-            volume1MthUsd = "$112,738,443.25",
+            volume1MthUsd = "$113,738,443.25",
         )
 }
