@@ -109,4 +109,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.junit4.android)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    releaseImplementation(libs.library.no.op)
+    debugImplementation(libs.library)
 }
