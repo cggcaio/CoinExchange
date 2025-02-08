@@ -33,8 +33,7 @@ class CallWithErrorHandling(
                         try {
                             val adapter = Moshi.Builder().build().adapter(HttpError::class.java)
                             val body = response.errorBody()?.string() ?: ""
-
-                            if (body.isNotEmpty() && response.errorBody()?.contentType()?.subtype() == "json") {
+                            if (body.isNotEmpty() && response.errorBody()?.contentType()?.subtype == "json") {
                                 val error = adapter.fromJson(body)
                                 if (error != null) {
                                     callback.onFailure(
