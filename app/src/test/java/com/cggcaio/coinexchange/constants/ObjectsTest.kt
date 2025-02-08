@@ -4,6 +4,7 @@ import com.cggcaio.coinexchange.exchange.data.model.ExchangeDetailsResponse
 import com.cggcaio.coinexchange.exchange.data.model.ExchangeResponse
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
 import com.cggcaio.coinexchange.exchange.domain.model.ExchangeDetails
+import com.cggcaio.coinexchange.network.error.model.CustomNetworkException
 
 object ObjectsTest {
     val exchange_1_api =
@@ -68,5 +69,12 @@ object ObjectsTest {
             volume1DayUsd = "$111,738,443.25",
             volume1HrsUsd = "$112,738,443.25",
             volume1MthUsd = "$113,738,443.25",
+        )
+
+    val customNetworkException =
+        CustomNetworkException(
+            code = 422,
+            friendlyMessage = "Erro de conexão",
+            message = "Error",
         )
 }
