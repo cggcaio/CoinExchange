@@ -23,7 +23,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class ExchangeListRouteScreenTest {
+class ExchangeListScreenTest {
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -36,6 +36,8 @@ class ExchangeListRouteScreenTest {
                         override val listStatus: State<ExchangeListStatusEnum>
                             get() = mutableStateOf(LOADING)
                         override val visibleExchanges: State<List<Exchange>?>
+                            get() = mutableStateOf(null)
+                        override val error: State<String?>
                             get() = mutableStateOf(null)
 
                         override fun getExchanges() {}
@@ -62,6 +64,8 @@ class ExchangeListRouteScreenTest {
                             get() = mutableStateOf(ERROR)
                         override val visibleExchanges: State<List<Exchange>?>
                             get() = mutableStateOf(null)
+                        override val error: State<String?>
+                            get() = mutableStateOf(null)
 
                         override fun getExchanges() {}
 
@@ -87,6 +91,8 @@ class ExchangeListRouteScreenTest {
                             get() = mutableStateOf(EMPTY_LIST)
                         override val visibleExchanges: State<List<Exchange>?>
                             get() = mutableStateOf(emptyList())
+                        override val error: State<String?>
+                            get() = mutableStateOf(null)
 
                         override fun getExchanges() {}
 
@@ -112,6 +118,8 @@ class ExchangeListRouteScreenTest {
                             get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
                         override val visibleExchanges: State<List<Exchange>?>
                             get() = mutableStateOf(exchangeList)
+                        override val error: State<String?>
+                            get() = mutableStateOf(null)
 
                         override fun getExchanges() {}
 
@@ -146,6 +154,8 @@ class ExchangeListRouteScreenTest {
                             get() = listStatus
                         override val visibleExchanges: State<List<Exchange>?>
                             get() = filteredList
+                        override val error: State<String?>
+                            get() = mutableStateOf(null)
 
                         override fun getExchanges() {}
 
@@ -183,6 +193,8 @@ class ExchangeListRouteScreenTest {
                             get() = mutableStateOf(ExchangeListStatusEnum.SUCCESS)
                         override val visibleExchanges: State<List<Exchange>?>
                             get() = mutableStateOf(exchangeList)
+                        override val error: State<String?>
+                            get() = mutableStateOf(null)
 
                         override fun getExchanges() {}
 
