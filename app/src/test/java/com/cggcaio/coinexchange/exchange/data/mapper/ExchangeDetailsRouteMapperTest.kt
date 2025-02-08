@@ -5,7 +5,7 @@ import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails_api
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 
-class ExchangeDetailsMapperTest {
+class ExchangeDetailsRouteMapperTest {
     @Test
     fun `test transformTo should map ExchangeDetailsResponse to ExchangeDetails correctly`() {
         val exchangeDetailsResponse = exchangeDetails_api

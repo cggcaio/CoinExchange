@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
-class GetExchangeDetailsUseCaseTest {
+class GetExchangeDetailsRouteUseCaseTest {
     private val _repository = mockkClass(ExchangeRepository::class)
     private val _getExchangeDetailsUseCase = GetExchangeDetailsUseCase(_repository)
 
