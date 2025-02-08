@@ -20,8 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalUriHandler
-import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -48,6 +47,7 @@ fun ExchangeDetailsScreen(
     exchangeId: String,
     detailsViewModel: BaseExchangeDetailsViewModel = hiltViewModel<ExchangeDetailsViewModel>(),
     goToBack: () -> Unit,
+    goToWeb: (String) -> Unit,
 ) {
     val details = remember { detailsViewModel.exchangeDetails }
 
@@ -74,9 +74,15 @@ fun ExchangeDetailsScreen(
                     retry = { detailsViewModel.getExchangeDetails(id = exchangeId) },
                 )
 
-            SUCCESS -> SuccessDetailsExchangeView(details = details.value)
+            SUCCESS ->
+                SuccessDetailsExchangeView(
+                    details = details.value,
+                    goToWeb = { goToWeb(details.value?.website ?: "") },
+                )
 
-            NONE, LOADING -> LoadingDetailsView()
+            LOADING -> LoadingDetailsView()
+
+            NONE -> Unit
         }
     }
 }
@@ -98,7 +104,7 @@ private fun InfoItem(
     info: String,
     loading: Boolean = false,
     isLink: Boolean = false,
-    uriHandler: UriHandler = LocalUriHandler.current,
+    goToWeb: () -> Unit = {},
 ) {
     Column(modifier = modifier.padding(vertical = 4.dp)) {
         Text(
@@ -116,12 +122,7 @@ private fun InfoItem(
             }
         } else {
             Row(
-                modifier =
-                    Modifier.noRippleClickable {
-                        if (isLink) {
-                            uriHandler.openUri(info)
-                        }
-                    },
+                modifier = Modifier.noRippleClickable { if (isLink) goToWeb() },
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(text = info, style = typography.bodyBold)
@@ -140,7 +141,7 @@ private fun InfoItem(
 
 @Composable
 private fun LoadingDetailsView() {
-    CustomShimmer { brush ->
+    CustomShimmer(modifier = Modifier.testTag(tag = "DetailsShimmer")) { brush ->
         Text(
             modifier = Modifier.background(brush = brush, shape = RoundedCornerShape(10.dp)),
             text = "Binance",
@@ -208,63 +209,68 @@ private fun LoadingDetailsView() {
 }
 
 @Composable
-private fun SuccessDetailsExchangeView(details: ExchangeDetails?) {
-    Text(
-        text = details?.name ?: "",
-        style = typography.header3,
-        fontWeight = FontWeight.Bold,
-    )
-    Spacer(modifier = Modifier.size(size = 4.dp))
-    Text(
-        text = "ID: ${details?.exchangeId}",
-        style = typography.body.copy(color = color.textMuted),
-    )
-    Spacer(modifier = Modifier.size(size = 16.dp))
-    SectionTitle(title = "Informações gerais")
-    InfoItem(title = "Volume 1h ($)", info = details?.volume1HrsUsd ?: "")
-    InfoItem(title = "Volume 1 dia ($)", info = details?.volume1DayUsd ?: "")
-    InfoItem(title = "Volume 1 mês ($)", info = details?.volume1MthUsd ?: "")
-    InfoItem(title = "Website", info = details?.website ?: "", isLink = true)
+private fun SuccessDetailsExchangeView(
+    details: ExchangeDetails?,
+    goToWeb: () -> Unit,
+) {
+    Column(modifier = Modifier.testTag(tag = "DetailsExchangeView")) {
+        Text(
+            text = details?.name ?: "",
+            style = typography.header3,
+            fontWeight = FontWeight.Bold,
+        )
+        Spacer(modifier = Modifier.size(size = 4.dp))
+        Text(
+            text = "ID: ${details?.exchangeId}",
+            style = typography.body.copy(color = color.textMuted),
+        )
+        Spacer(modifier = Modifier.size(size = 16.dp))
+        SectionTitle(title = "Informações gerais")
+        InfoItem(title = "Volume 1h ($)", info = details?.volume1HrsUsd ?: "")
+        InfoItem(title = "Volume 1 dia ($)", info = details?.volume1DayUsd ?: "")
+        InfoItem(title = "Volume 1 mês ($)", info = details?.volume1MthUsd ?: "")
+        InfoItem(title = "Website", info = details?.website ?: "", isLink = true, goToWeb = { goToWeb() })
 
-    Spacer(modifier = Modifier.size(size = 16.dp))
-    SectionTitle(title = "Datas")
-    Row {
-        InfoItem(
-            modifier = Modifier.weight(1f),
-            title = "Início das Cotações",
-            info = details?.dataQuoteStart ?: "",
-        )
-        InfoItem(
-            modifier = Modifier.weight(1f),
-            title = "Fim das Cotações",
-            info = details?.dataQuoteEnd ?: "",
-        )
-    }
+        Spacer(modifier = Modifier.size(size = 16.dp))
+        SectionTitle(title = "Datas")
+        Row {
+            InfoItem(
+                modifier = Modifier.weight(1f),
+                title = "Início das Cotações",
+                info = details?.dataQuoteStart ?: "",
+            )
+            InfoItem(
+                modifier = Modifier.weight(1f),
+                title = "Fim das Cotações",
+                info = details?.dataQuoteEnd ?: "",
+            )
+        }
 
-    Row {
-        InfoItem(
-            modifier = Modifier.weight(1f),
-            title = "Início das Ordens",
-            info = details?.dataOrderStart ?: "",
-        )
-        InfoItem(
-            modifier = Modifier.weight(1f),
-            title = "Fim das Ordens",
-            info = details?.dataOrderEnd ?: "",
-        )
-    }
+        Row {
+            InfoItem(
+                modifier = Modifier.weight(1f),
+                title = "Início das Ordens",
+                info = details?.dataOrderStart ?: "",
+            )
+            InfoItem(
+                modifier = Modifier.weight(1f),
+                title = "Fim das Ordens",
+                info = details?.dataOrderEnd ?: "",
+            )
+        }
 
-    Row {
-        InfoItem(
-            modifier = Modifier.weight(1f),
-            title = "Início das Trocas",
-            info = details?.dataTradeStart ?: "",
-        )
-        InfoItem(
-            modifier = Modifier.weight(1f),
-            title = "Fim das Trocas",
-            info = details?.dataTradeEnd ?: "",
-        )
+        Row {
+            InfoItem(
+                modifier = Modifier.weight(1f),
+                title = "Início das Trocas",
+                info = details?.dataTradeStart ?: "",
+            )
+            InfoItem(
+                modifier = Modifier.weight(1f),
+                title = "Fim das Trocas",
+                info = details?.dataTradeEnd ?: "",
+            )
+        }
     }
 }
 
@@ -278,6 +284,7 @@ fun ExchangeDetailsScreenPreview(
             exchangeId = "BINANCE",
             detailsViewModel = detailsViewModel,
             goToBack = {},
+            goToWeb = {},
         )
     }
 }
@@ -292,6 +299,7 @@ fun ExchangeDetailsScreenDarkPreview(
             exchangeId = "BINANCE",
             detailsViewModel = detailsViewModel,
             goToBack = {},
+            goToWeb = {},
         )
     }
 }

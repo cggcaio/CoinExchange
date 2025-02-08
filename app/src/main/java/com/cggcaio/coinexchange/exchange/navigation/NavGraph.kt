@@ -1,5 +1,7 @@
 package com.cggcaio.coinexchange.exchange.navigation
 
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -19,9 +21,12 @@ fun NavGraphBuilder.exchangeGraph(navController: NavController) {
         }
         composable<ExchangeDetailsRoute> { backStackEntry ->
             val exchange: ExchangeDetailsRoute = backStackEntry.toRoute()
+            val uriHandler: UriHandler = LocalUriHandler.current
+
             ExchangeDetailsScreen(
                 exchangeId = exchange.id,
                 goToBack = { navController.popBackStack() },
+                goToWeb = { uri -> uriHandler.openUri(uri) },
             )
         }
     }
