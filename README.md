@@ -33,6 +33,7 @@ criptomoedas utilizando a API da CoinAPI.io.
 
 2. **Abrir no Android Studio**
    - Abra o projeto na IDE e aguarde a sincronização das dependências.
+   _Certifique-se estar com o Android Studio Ladybug ou mais novo, caso contrário será necessário alterar a versão do AGP._
 
 3. **Configurar API Key**
    - Crie um arquivo `local.properties` na raiz do projeto.
