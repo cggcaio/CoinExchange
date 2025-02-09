@@ -38,7 +38,7 @@ criptomoedas utilizando a API da CoinAPI.io.
    - Crie um arquivo `local.properties` na raiz do projeto.
    - Adicione sua chave da CoinAPI.io:
     ```properties
-    COIN_API_KEY="sua_api_key_aqui"
+    API_KEY="sua_api_key_aqui"
     BASE_URL="rest.coinapi.io"
     ```
    - _Caso não tenha uma chave, acesse a [CoinAPI.io](https://docs.coinapi.io/?shell#list-all-exchanges-get) e crie uma conta._
