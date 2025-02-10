@@ -12,7 +12,7 @@ import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum.LOADIN
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum.SUCCESS
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
 import com.cggcaio.coinexchange.exchange.domain.usecase.GetExchangesUseCase
-import com.cggcaio.coinexchange.network.error.model.CustomNetworkException
+import com.cggcaio.network.error.model.CustomNetworkException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn

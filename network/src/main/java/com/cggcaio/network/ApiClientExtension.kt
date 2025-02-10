@@ -1,4 +1,4 @@
-package com.cggcaio.coinexchange.network
+package com.cggcaio.network
 
 import android.net.Uri
 

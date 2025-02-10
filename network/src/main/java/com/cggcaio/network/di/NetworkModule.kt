@@ -1,8 +1,8 @@
-package com.cggcaio.coinexchange.network.di
+package com.cggcaio.network.di
 
 import android.content.Context
-import com.cggcaio.coinexchange.network.ApiClient
-import com.cggcaio.coinexchange.network.ApiClientImpl
+import com.cggcaio.network.ApiClient
+import com.cggcaio.network.ApiClientImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

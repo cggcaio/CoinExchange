@@ -1,9 +1,9 @@
 package com.cggcaio.coinexchange.exchange.di
 
-import com.cggcaio.coinexchange.BuildConfig
 import com.cggcaio.coinexchange.exchange.data.service.ExchangeService
-import com.cggcaio.coinexchange.network.ApiClient
-import com.cggcaio.coinexchange.network.createService
+import com.cggcaio.network.ApiClient
+import com.cggcaio.network.BuildConfig
+import com.cggcaio.network.createService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

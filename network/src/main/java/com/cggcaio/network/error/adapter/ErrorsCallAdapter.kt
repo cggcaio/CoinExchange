@@ -1,6 +1,6 @@
-package com.cggcaio.coinexchange.network.error.adapter
+package com.cggcaio.network.error.adapter
 
-import com.cggcaio.coinexchange.network.error.CallWithErrorHandling
+import com.cggcaio.network.error.CallWithErrorHandling
 import retrofit2.Call
 import retrofit2.CallAdapter
 

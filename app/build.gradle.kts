@@ -1,5 +1,3 @@
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -9,20 +7,6 @@ plugins {
     kotlin("plugin.serialization") version "1.4.21"
     id("com.google.devtools.ksp")
 }
-
-val localProperties =
-    Properties().apply {
-        val localPropertiesFile = rootProject.file("local.properties")
-        if (localPropertiesFile.exists()) {
-            load(localPropertiesFile.inputStream())
-        }
-    }
-val baseUrl =
-    localProperties.getProperty("BASE_URL")?.trim()
-        ?: throw GradleException("BASE_URL not found in local.properties")
-val apiKey =
-    localProperties.getProperty("API_KEY")?.trim()
-        ?: throw GradleException("API_KEY not found in local.properties")
 
 android {
     namespace = "com.cggcaio.coinexchange"
@@ -37,8 +21,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
-        buildConfigField("String", "API_KEY", "\"$apiKey\"")
     }
 
     buildTypes {
@@ -73,11 +55,15 @@ android {
     }
     buildFeatures {
         compose = true
-        buildConfig = true
+    }
+
+    kapt {
+        correctErrorTypes = true
     }
 }
 
 dependencies {
+    implementation(project(":network"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -90,7 +76,6 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.moshi.kotlin)
     implementation(libs.retrofit)
-    implementation(libs.converter.moshi)
     ksp(libs.moshi.kotlin.codegen)
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.ui)
@@ -109,6 +94,4 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.junit4.android)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    releaseImplementation(libs.library.no.op)
-    debugImplementation(libs.library)
 }

@@ -1,4 +1,4 @@
-package com.cggcaio.coinexchange.network.error.constants
+package com.cggcaio.network.error.constants
 
 object ErrorMessages {
     const val BAD_REQUEST = "Parece que há algo errado com sua solicitação. Por favor, verifique e tente novamente."

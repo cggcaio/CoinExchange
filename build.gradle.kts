@@ -6,4 +6,5 @@ plugins {
     id("com.google.dagger.hilt.android") version "2.51.1" apply false
     kotlin("plugin.serialization") version "1.4.21"
     id("com.google.devtools.ksp") version "2.0.21-1.0.27" apply false
+    alias(libs.plugins.android.library) apply false
 }

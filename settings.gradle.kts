@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Coin Exchange"
 include(":app")
+include(":network")

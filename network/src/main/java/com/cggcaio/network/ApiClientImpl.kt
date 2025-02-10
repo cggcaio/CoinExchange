@@ -1,8 +1,7 @@
-package com.cggcaio.coinexchange.network
+package com.cggcaio.network
 
 import android.content.Context
-import com.cggcaio.coinexchange.BuildConfig
-import com.cggcaio.coinexchange.network.error.ErrorsCallAdapterFactory
+import com.cggcaio.network.error.ErrorsCallAdapterFactory
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Interceptor

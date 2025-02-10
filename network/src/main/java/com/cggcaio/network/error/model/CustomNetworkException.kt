@@ -1,4 +1,4 @@
-package com.cggcaio.coinexchange.network.error.model
+package com.cggcaio.network.error.model
 
 data class CustomNetworkException(
     val code: Int,

@@ -4,7 +4,7 @@ import com.cggcaio.coinexchange.exchange.data.model.ExchangeDetailsResponse
 import com.cggcaio.coinexchange.exchange.data.model.ExchangeResponse
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
 import com.cggcaio.coinexchange.exchange.domain.model.ExchangeDetails
-import com.cggcaio.coinexchange.network.error.model.CustomNetworkException
+import com.cggcaio.network.error.model.CustomNetworkException
 
 object ObjectsTest {
     val exchange_1_api =
