@@ -4,7 +4,6 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.cggcaio.coinexchange.core.base.BaseUseCase
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum.EMPTY_LIST
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum.ERROR
@@ -12,6 +11,7 @@ import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum.LOADIN
 import com.cggcaio.coinexchange.exchange.constants.ExchangeListStatusEnum.SUCCESS
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
 import com.cggcaio.coinexchange.exchange.domain.usecase.GetExchangesUseCase
+import com.cggcaio.core.base.BaseUseCase
 import com.cggcaio.network.error.model.CustomNetworkException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch

@@ -13,8 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.cggcaio.coinexchange.exchange.navigation.ExchangeGraph
 import com.cggcaio.coinexchange.exchange.navigation.exchangeGraph
-import com.cggcaio.coinexchange.ui.theme.AppTheme.color
-import com.cggcaio.coinexchange.ui.theme.CoinExchangeTheme
+import com.cggcaio.core.theme.AppTheme.color
+import com.cggcaio.core.theme.CoinExchangeTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,0 +1,25 @@
+package com.cggcaio.core.theme.constants
+
+import androidx.compose.ui.graphics.Color
+
+val primary100 = Color(color = 0xFF37474F)
+val primary200 = Color(color = 0xFF2C383F)
+val blue100 = Color(color = 0xFFEDF4F7)
+val blue200 = Color(color = 0xFF81B2CA)
+var blue300 = Color(color = 0xFF5D8EC9)
+val orange100 = Color(color = 0xFFFFF4E5)
+val orange200 = Color(color = 0xFFFFB974)
+val orange300 = Color(color = 0xFFFF8A3D)
+val green100 = Color(color = 0xFFD9E7E5)
+val green200 = Color(color = 0xFF42887C)
+val red100 = Color(color = 0xFFFFE5E5)
+val red200 = Color(color = 0xFFFF7A7A)
+val red300 = Color(color = 0xFFFF4C4C)
+val secondary = Color(color = 0xFFFFC727)
+val lightGray100 = Color(color = 0xFFF5F7FF)
+val gray900 = Color(color = 0xFF131313)
+val gray800 = Color(color = 0xFF292B2D)
+val gray600 = Color(color = 0xFF7B8186)
+val gray500 = Color(color = 0xFFB0B3B8)
+val gray300 = Color(color = 0xFFE0E0E0)
+val gray200 = Color(color = 0xFFD7D7D7)

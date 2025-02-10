@@ -1,10 +1,10 @@
 package com.cggcaio.coinexchange.exchange.data.mapper
 
-import com.cggcaio.coinexchange.core.base.BaseMapper
-import com.cggcaio.coinexchange.core.extension.convertDateFormat
-import com.cggcaio.coinexchange.core.extension.formatToDollar
 import com.cggcaio.coinexchange.exchange.data.model.ExchangeDetailsResponse
 import com.cggcaio.coinexchange.exchange.domain.model.ExchangeDetails
+import com.cggcaio.core.base.BaseMapper
+import com.cggcaio.core.extension.convertDateFormat
+import com.cggcaio.core.extension.formatToDollar
 
 object ExchangeDetailsMapper : BaseMapper<ExchangeDetailsResponse, ExchangeDetails>() {
     override fun transformTo(source: ExchangeDetailsResponse): ExchangeDetails =

@@ -26,21 +26,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.cggcaio.coinexchange.core.components.CustomShimmer
-import com.cggcaio.coinexchange.core.components.CustomToolbar
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.ERROR
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.LOADING
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.NONE
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.SUCCESS
-import com.cggcaio.coinexchange.core.utils.noRippleClickable
-import com.cggcaio.coinexchange.core.widgets.ErrorView
 import com.cggcaio.coinexchange.exchange.domain.model.ExchangeDetails
 import com.cggcaio.coinexchange.exchange.presentation.preview.ExchangeDetailsViewModelPreview
 import com.cggcaio.coinexchange.exchange.presentation.viewmodel.BaseExchangeDetailsViewModel
 import com.cggcaio.coinexchange.exchange.presentation.viewmodel.ExchangeDetailsViewModel
-import com.cggcaio.coinexchange.ui.theme.AppTheme.color
-import com.cggcaio.coinexchange.ui.theme.AppTheme.typography
-import com.cggcaio.coinexchange.ui.theme.CoinExchangeTheme
+import com.cggcaio.core.theme.AppTheme.color
+import com.cggcaio.core.theme.AppTheme.typography
+import com.cggcaio.core.theme.CoinExchangeTheme
+import com.cggcaio.core.components.CustomShimmer
+import com.cggcaio.core.components.CustomToolbar
+import com.cggcaio.core.constants.RequestStatusEnum.ERROR
+import com.cggcaio.core.constants.RequestStatusEnum.LOADING
+import com.cggcaio.core.constants.RequestStatusEnum.NONE
+import com.cggcaio.core.constants.RequestStatusEnum.SUCCESS
+import com.cggcaio.core.utils.noRippleClickable
+import com.cggcaio.core.widgets.ErrorView
 
 @Composable
 fun ExchangeDetailsScreen(

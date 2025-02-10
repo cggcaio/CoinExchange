@@ -1,8 +1,8 @@
 package com.cggcaio.coinexchange.exchange.domain.usecase
 
-import com.cggcaio.coinexchange.core.base.BaseUseCase
 import com.cggcaio.coinexchange.exchange.domain.model.ExchangeDetails
 import com.cggcaio.coinexchange.exchange.domain.repository.ExchangeRepository
+import com.cggcaio.core.base.BaseUseCase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

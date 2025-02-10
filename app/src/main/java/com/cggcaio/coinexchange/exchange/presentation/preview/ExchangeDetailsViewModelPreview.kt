@@ -3,12 +3,12 @@ package com.cggcaio.coinexchange.exchange.presentation.preview
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.ERROR
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.LOADING
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.SUCCESS
 import com.cggcaio.coinexchange.exchange.domain.model.ExchangeDetails
 import com.cggcaio.coinexchange.exchange.presentation.viewmodel.BaseExchangeDetailsViewModel
+import com.cggcaio.core.constants.RequestStatusEnum
+import com.cggcaio.core.constants.RequestStatusEnum.ERROR
+import com.cggcaio.core.constants.RequestStatusEnum.LOADING
+import com.cggcaio.core.constants.RequestStatusEnum.SUCCESS
 
 class ExchangeDetailsViewModelPreview : PreviewParameterProvider<BaseExchangeDetailsViewModel> {
     private val _exchangeDetails =

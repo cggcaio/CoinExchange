@@ -2,11 +2,11 @@ package com.cggcaio.coinexchange.exchange.presentation.viewmodel
 
 import com.cggcaio.coinexchange.constants.ObjectsTest.customNetworkException
 import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails_1
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.ERROR
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.LOADING
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.NONE
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.SUCCESS
 import com.cggcaio.coinexchange.exchange.domain.usecase.GetExchangeDetailsUseCase
+import com.cggcaio.core.constants.RequestStatusEnum.ERROR
+import com.cggcaio.core.constants.RequestStatusEnum.LOADING
+import com.cggcaio.core.constants.RequestStatusEnum.NONE
+import com.cggcaio.core.constants.RequestStatusEnum.SUCCESS
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

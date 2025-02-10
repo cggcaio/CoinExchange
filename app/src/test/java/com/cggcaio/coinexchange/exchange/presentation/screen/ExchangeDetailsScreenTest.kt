@@ -7,12 +7,12 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeDetails_1
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.ERROR
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.LOADING
-import com.cggcaio.coinexchange.core.constants.RequestStatusEnum.SUCCESS
 import com.cggcaio.coinexchange.exchange.domain.model.ExchangeDetails
 import com.cggcaio.coinexchange.exchange.presentation.viewmodel.BaseExchangeDetailsViewModel
+import com.cggcaio.core.constants.RequestStatusEnum
+import com.cggcaio.core.constants.RequestStatusEnum.ERROR
+import com.cggcaio.core.constants.RequestStatusEnum.LOADING
+import com.cggcaio.core.constants.RequestStatusEnum.SUCCESS
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

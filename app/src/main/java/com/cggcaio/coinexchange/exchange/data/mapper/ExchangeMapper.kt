@@ -1,9 +1,9 @@
 package com.cggcaio.coinexchange.exchange.data.mapper
 
-import com.cggcaio.coinexchange.core.base.BaseMapper
-import com.cggcaio.coinexchange.core.extension.formatToDollar
 import com.cggcaio.coinexchange.exchange.data.model.ExchangeResponse
 import com.cggcaio.coinexchange.exchange.domain.model.Exchange
+import com.cggcaio.core.base.BaseMapper
+import com.cggcaio.core.extension.formatToDollar
 
 object ExchangeMapper : BaseMapper<ExchangeResponse, Exchange>() {
     override fun transformTo(source: ExchangeResponse): Exchange =

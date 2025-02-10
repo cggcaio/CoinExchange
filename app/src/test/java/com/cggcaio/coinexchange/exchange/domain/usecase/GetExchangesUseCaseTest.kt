@@ -1,8 +1,8 @@
 package com.cggcaio.coinexchange.exchange.domain.usecase
 
 import com.cggcaio.coinexchange.constants.ObjectsTest.exchangeList
-import com.cggcaio.coinexchange.core.base.BaseUseCase
 import com.cggcaio.coinexchange.exchange.domain.repository.ExchangeRepository
+import com.cggcaio.core.base.BaseUseCase
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockkClass
