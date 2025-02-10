@@ -40,18 +40,20 @@ criptomoedas utilizando a API da CoinAPI.io.
    - Crie um arquivo `local.properties` na raiz do projeto.
    - Adicione sua chave da CoinAPI.io:
     ```properties
-    API_KEY="sua_api_key_aqui"
-    BASE_URL="rest.coinapi.io"
+    API_KEY=sua_api_key_aqui
+    BASE_URL=rest.coinapi.io
     ```
    - _Caso não tenha uma chave, acesse a [CoinAPI.io](https://docs.coinapi.io/?shell#list-all-exchanges-get) e crie uma conta._
 
-4. **Permissão de Notificações (Chucker)**
+
+4. **Rodar o aplicativo**
+   - Após o Sync, execute um emulador ou conecte um dispositivo físico.
+   - Execute o projeto pressionando no botão de "Run".
+  
+5. **Permissão de Notificações (Chucker)**
    - Para que o **Chucker Interceptor** notifique sobre as requisições HTTP, é necessário conceder permissão de notificações ao aplicativo.
    - _Entre nas configurações do App para conceder a permissão de notificações._
 
-5. **Rodar o aplicativo**
-   - Após o Sync, execute um emulador ou conecte um dispositivo físico.
-   - Execute o projeto pressionando no botão de "Run".
 
 ## 📌 **Estrutura do Projeto**
 
