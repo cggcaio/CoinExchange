@@ -19,6 +19,7 @@ criptomoedas utilizando a API da CoinAPI.io.
 - **UI Framework**: ![Jetpack Compose](https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=android&logoColor=white)
 - **Injeção de Dependência**: ![Hilt](https://img.shields.io/badge/Hilt-4285F4?style=for-the-badge&logo=android&logoColor=white)
 - **Networking**: ![Retrofit](https://img.shields.io/badge/Retrofit-3E4348?style=for-the-badge&logo=square&logoColor=white)
+- **Monitoramento de Requisições**: ![Chucker](https://img.shields.io/badge/Chucker-3E4348?style=for-the-badge&logo=android&logoColor=white)
 - **Testes**: ![JUnit](https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white) ![Compose Testing](https://img.shields.io/badge/Compose%20Testing-4285F4?style=for-the-badge&logo=android&logoColor=white)
 - **Arquitetura**: MVVM + Clean Architecture
 
@@ -39,14 +40,20 @@ criptomoedas utilizando a API da CoinAPI.io.
    - Crie um arquivo `local.properties` na raiz do projeto.
    - Adicione sua chave da CoinAPI.io:
     ```properties
-    API_KEY="sua_api_key_aqui"
-    BASE_URL="rest.coinapi.io"
+    API_KEY=sua_api_key_aqui
+    BASE_URL=rest.coinapi.io
     ```
    - _Caso não tenha uma chave, acesse a [CoinAPI.io](https://docs.coinapi.io/?shell#list-all-exchanges-get) e crie uma conta._
+
 
 4. **Rodar o aplicativo**
    - Após o Sync, execute um emulador ou conecte um dispositivo físico.
    - Execute o projeto pressionando no botão de "Run".
+  
+5. **Permissão de Notificações (Chucker)**
+   - Para que o **Chucker Interceptor** notifique sobre as requisições HTTP, é necessário conceder permissão de notificações ao aplicativo.
+   - _Entre nas configurações do App para conceder a permissão de notificações._
+
 
 ## 📌 **Estrutura do Projeto**
 
