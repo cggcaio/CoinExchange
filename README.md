@@ -1,6 +1,6 @@
 # CoinExchange
 
-CoinExchange é um aplicativo Android desenvolvido em Kotlin e Jetpack Compose, que permite a consulta de corretoras de
+CoinExchange é um aplicativo Android Multimodular desenvolvido em Kotlin e Jetpack Compose, que permite a consulta de corretoras de
 criptomoedas utilizando a API da CoinAPI.io.
 
 ## ✨ **Features**
@@ -21,7 +21,7 @@ criptomoedas utilizando a API da CoinAPI.io.
 - **Networking**: ![Retrofit](https://img.shields.io/badge/Retrofit-3E4348?style=for-the-badge&logo=square&logoColor=white)
 - **Monitoramento de Requisições**: ![Chucker](https://img.shields.io/badge/Chucker-3E4348?style=for-the-badge&logo=android&logoColor=white)
 - **Testes**: ![JUnit](https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white) ![Compose Testing](https://img.shields.io/badge/Compose%20Testing-4285F4?style=for-the-badge&logo=android&logoColor=white)
-- **Arquitetura**: MVVM + Clean Architecture
+- **Arquitetura**: MVVM + Clean Architecture (Multimodular)
 
 ## 🚀 **Como Executar o Projeto**
 
@@ -60,7 +60,6 @@ criptomoedas utilizando a API da CoinAPI.io.
 ```
 coinexchange/
 │-- app/
-|   |--core/               # Core do projeto (bases, components, utils, widgets...)
 │   │-- exchange/          # Módulo de Corretoras 
 │   │   │-- constants/     # Constantes
 │   │   │-- data/          # Mappers, models, service
@@ -68,10 +67,9 @@ coinexchange/
 │   │   │-- domain/        # Models, repositories, usecases
 │   │   │-- navigation/    # Navegação
 │   │   │-- presentation/  # UI, viewmodels, previews
-│   │-- network/           # Retrofit
-│   │-- ui/                # Telas do aplicativo (Compose)
-│   |   │-- theme/         # Temas e estilos visuais customizados
-│-- build.gradle.kts       # Configuração do projeto
+│-- network/               # Módulo de Conexão
+|--core/                   # Módulo Core do projeto (bases, components, utils, widgets, tema, cores...)
+│-- build.gradle.kts       # Configuração do projeto (para cada módulo)
 ```
 
 🎨 **Ícone do App**
